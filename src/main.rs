@@ -147,7 +147,7 @@ where
     {
         return Err(err.into());
     }
-    let mut conn = Connection::open(database_path).context("cannot open database connection")?;
+    let mut conn = Connection::open_in_memory().context("cannot open database connection")?;
     conn.pragma_update(None, "foreign_keys", "ON")
         .context("internal error: cannot set foreign_keys")?;
     conn.execute_batch(SCHEMA)
